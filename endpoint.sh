@@ -11,20 +11,19 @@ usage()
 cat << EOF
 usage: $0 options
 
-\/\/ Jetstash Endpoint \/\/
+\/\/ Jetstash Endpoint Tester \/\/
 
 Test or populate your shizzle. With bash. Options will override anything set in the config.sh file.
 
 OPTIONS:
    -h      Show this message
    -n      Define the number of interations to run
-   -u      Define the url of the application if different that your config
-   -f      Define the form id
+   -r      Define the url of the application if different that your config
 
 EOF
 }
 
-builddata()
+build_data()
 {
   data=$1
   for key in "${!data[@]}"
@@ -38,12 +37,6 @@ builddata()
   done
 }
 
-buildurl()
-{
-  route="$url/v1/form/submit?$post"
-}
-
-
 while getopts "h n:" flag
   do
     case $flag in
@@ -55,18 +48,21 @@ while getopts "h n:" flag
     n )
       iterations=$OPTARG
       ;;
-    u )
-      url=$OPTARG
-      ;;
-    f )
-      form=$OPTARG
+    r )
+      route=$OPTARG
       ;;
   esac
 done
 
-builddata $data
-buildurl $url $post
+build_data $data
 
-echo $url
-echo $post
-echo $route
+printf "Response:\n"
+i="0"
+
+while [[ $i -lt $iterations ]]
+do
+  printf "Iteration #$i: "
+  curl -XPOST $route -d "$post"
+  printf "\n"
+  i=$[$i+1]
+done
