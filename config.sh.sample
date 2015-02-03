@@ -1,2 +1,16 @@
-!# /bin/bash
+#! /bin/bash
 
+# Number of times to post to the endpoint
+iterations=
+
+# Endpoint to POST
+url=
+
+# Form ID
+form=
+
+# Form Data to POST add as many array items as desired
+declare -A data
+data[name]=
+data[email]=
+data[message]=

@@ -1,4 +1,10 @@
-#! /bin/bash
+#! /usr/local/bin/bash
+
+if [ ! -f `dirname $0`/config.sh ]; then
+  echo "Please copy config.sample.sh to config.sh and update variables. Exiting."
+  exit 1
+fi
+. `dirname $0`/config.sh
 
 usage()
 {
@@ -7,7 +13,7 @@ usage: $0 options
 
 \/\/ Jetstash Endpoint \/\/
 
-Test or populate your shizzle. With bash.
+Test or populate your shizzle. With bash. Options will override anything set in the config.sh file.
 
 OPTIONS:
    -h      Show this message
@@ -18,10 +24,23 @@ OPTIONS:
 EOF
 }
 
-
+builddata()
+{
+  data=$1
+  for key in "${!data[@]}"
+  do
+    if [[ $key != "0" ]]
+    then
+      value=${data[$key]}
+      value="${value// /+}"
+      post+="&$key=$value"
+    fi
+  done
+}
 
 buildurl()
 {
+  route="$url/v1/form/submit?$post"
 }
 
 
@@ -34,7 +53,7 @@ while getopts "h n:" flag
       exit 1
       ;;
     n )
-      mode=$OPTARG
+      iterations=$OPTARG
       ;;
     u )
       url=$OPTARG
@@ -43,8 +62,11 @@ while getopts "h n:" flag
       form=$OPTARG
       ;;
   esac
-
-
-
-
 done
+
+builddata $data
+buildurl $url $post
+
+echo $url
+echo $post
+echo $route
