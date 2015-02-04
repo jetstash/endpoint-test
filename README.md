@@ -12,7 +12,6 @@ flag | description
 h    | Show the help message
 n    | Define the number of interations to run
 u    | Define the url of the application if different that your config
-f    | Form ID
 
 # Requirements
 
