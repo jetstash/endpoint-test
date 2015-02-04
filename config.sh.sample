@@ -1,16 +1,16 @@
-#! /bin/bash
+#! /usr/local/bin/bash
 
 # Number of times to post to the endpoint
-iterations=
+iterations=1
 
-# Endpoint to POST
-url=
+# Route to POST
+# Example: http://api.example.com/v1/route/action
+route=
 
-# Form ID
-form=
-
-# Form Data to POST add as many array items as desired
+# Form Data to POST, add as many array items as desired
+# You may use spaces, but wrap in double quotes!
 declare -A data
-data[name]=
-data[email]=
-data[message]=
+data[name]="Jonny Five"
+data[email]=jonny5@example.com
+data[message]="No disassemble Number Five!"
+

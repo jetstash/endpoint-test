@@ -17,3 +17,16 @@ f    | Form ID
 # Requirements
 
 Bash 4+ (OS X ships with Bash 3!)
+
+The scripts shebang points to `/usr/local/bin/bash` -- which will fail if you run /bin/bash
+
+```
+brew install bash
+chsh -s /usr/local/bin/bash
+```
+
+Alternatively add `/usr/local/bin/bash` to `/etc/shells`
+
+# License
+
+MIT
