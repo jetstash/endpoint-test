@@ -7,11 +7,14 @@ This is a tool to help test form submissions and also to seed your database if n
 Copy `config.sh.sample` to `config.sh` and modify environment variables.
 
 ## Flags
-flag | description 
----- | -------- 
-h    | Show the help message
-n    | Define the number of interations to run
-r    | Define the url of the application if different that your config
+
+Optional flags, these will override the settings in your `config.sh`  
+
+flag | arguments | description 
+---- | --------- | -----------
+h    | none      | Show the help message
+n    | integer   | Define the number of interations to run
+r    | string    | Define the route of the application
 
 # Requirements
 
